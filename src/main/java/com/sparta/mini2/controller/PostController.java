@@ -3,13 +3,13 @@ package com.sparta.mini2.controller;
 import com.sparta.mini2.dto.PostRequestDto;
 import com.sparta.mini2.dto.PostResponseDto;
 import com.sparta.mini2.model.Post;
+
 import com.sparta.mini2.security.UserDetailsImpl;
-import com.sparta.mini2.service.PostService;
-import com.sparta.mini2.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +25,7 @@ public class PostController {
 
     // 게시글 전체 조회  ,페이징처리
     @GetMapping("/api/post")
-    public Page<Post> getPost(@PageableDefault(size = 10) Pageable pageable
+    public Page<Post> getPost(@PageableDefault(size = 5) Pageable pageable
 //            @RequestParam("page")  int page,
 //            @RequestParam("size") int size,
 //            @RequestParam ("sortBy")  String sortBy,
@@ -43,9 +43,9 @@ public class PostController {
     }
     // 게시글 생성
     @PostMapping("/api/post")
-    public PostResponseDto createPost(@RequestBody PostRequestDto requestDto , @AuthenticationPrincipal UserDetailsImpl userDetails){
+    public PostResponseDto createPost(@RequestBody PostRequestDto requestDto){
 
-        return PostService.createPost(requestDto , userDetails);
+        return PostService.createPost(requestDto);
     }
     //게시글 수정
     @PutMapping("/api/post/{postId}")

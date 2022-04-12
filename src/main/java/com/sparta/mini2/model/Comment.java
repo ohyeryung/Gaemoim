@@ -30,24 +30,13 @@ public class Comment extends Timestamped {
     private Long postId;
 
 
-
-//    // 댓글 생성
-//    public Comment(CommentRequestDto requestDto) {
-//        this.nickName = requestDto.getNickName();
-//        this.username = requestDto.getUsername();
-//        this.postId = requestDto.getPostId();
-//        this.comment_content = requestDto.getComment_content();
-//    }
-  // 댓글생성
-    public Comment(Long postId, CommentRequestDto requestDto) {
+    // 게시글 생성
+    public Comment(CommentRequestDto requestDto) {
         this.nickName = requestDto.getNickName();
         this.username = requestDto.getUsername();
-        this.postId = postId;
+        this.postId = requestDto.getPostId();
         this.comment_content = requestDto.getComment_content();
-
-
     }
-
     // 게시글 수정
     public void update(CommentRequestDto requestDto) {
 //        this.username = requestDto.getUsername();
