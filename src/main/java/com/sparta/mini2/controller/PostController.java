@@ -19,6 +19,7 @@ public class PostController {
 
 
     private final com.sparta.mini2.service.PostService PostService;
+    private final com.sparta.mini2.service.UserService UserService;
 
 
 
@@ -37,13 +38,14 @@ public class PostController {
     //     게시글 특정 조회
     @GetMapping("/api/post/{postId}")
     public Post getPost(@PathVariable Long postId) {
+
         return PostService.getPost(postId);
     }
     // 게시글 생성
     @PostMapping("/api/post")
-    public PostResponseDto createPost(@RequestBody PostRequestDto requestDto ){
+    public PostResponseDto createPost(@RequestBody PostRequestDto requestDto , @AuthenticationPrincipal UserDetailsImpl userDetails){
 
-        return PostService.createPost(requestDto );
+        return PostService.createPost(requestDto , userDetails);
     }
     //게시글 수정
     @PutMapping("/api/post/{postId}")
