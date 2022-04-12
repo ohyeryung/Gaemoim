@@ -16,8 +16,7 @@
   └──/dto
      ├── /PostRequestDto.java
      ├── /CommentRequestDto.java
-     ├── /SignupRequestDto.java
-     └── /UserInfoDto.java
+     └──  /SignupRequestDto.java
   └──/model
      ├── /Post.java
      ├── /Comment.java
