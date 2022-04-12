@@ -24,7 +24,7 @@ public class PostController {
 
     // 게시글 전체 조회  ,페이징처리
     @GetMapping("/api/post")
-    public Page<Post> getPost(@PageableDefault(size = 5) Pageable pageable
+    public Page<Post> getPost(@PageableDefault(size = 10) Pageable pageable
 //            @RequestParam("page")  int page,
 //            @RequestParam("size") int size,
 //            @RequestParam ("sortBy")  String sortBy,
