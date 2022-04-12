@@ -3,14 +3,14 @@ package com.sparta.mini2.controller;
 import com.sparta.mini2.dto.PostRequestDto;
 import com.sparta.mini2.dto.PostResponseDto;
 import com.sparta.mini2.model.Post;
-
+import com.sparta.mini2.security.UserDetailsImpl;
 import com.sparta.mini2.service.PostService;
 import com.sparta.mini2.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
