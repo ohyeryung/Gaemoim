@@ -1,4 +1,4 @@
-package com.sparta.mini2.contorller;
+package com.sparta.mini2.controller;
 
 import com.sparta.mini2.dto.ResponseDto;
 import com.sparta.mini2.dto.SignupRequestDto;
