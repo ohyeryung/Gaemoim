@@ -18,9 +18,9 @@ public class CommentService {
     private final com.sparta.mini2.repository.CommentRepository CommentRepository;
 
     //댓글 생성
-    public CommentResponseDto createComment(CommentRequestDto requestDto) {
+    public CommentResponseDto createComment(Long postId, CommentRequestDto requestDto) {
         CommentResponseDto commentResponseDto = null;
-        Comment comment = new Comment(requestDto);
+        Comment comment = new Comment(postId,requestDto);
         CommentRepository.save(comment);
         commentResponseDto = new CommentResponseDto(true);
         return commentResponseDto;

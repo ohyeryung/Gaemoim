@@ -31,9 +31,9 @@ public class CommentController {
     }
     // 댓글 생성
     @PostMapping("/api/comments/{postId}")
-    public CommentResponseDto createComment(@RequestBody CommentRequestDto requestDto){
+    public CommentResponseDto createComment(@PathVariable Long postId, @RequestBody CommentRequestDto requestDto){
 
-        return CommentService.createComment(requestDto);
+        return CommentService.createComment(postId, requestDto);
     }
     // 댓글 수정
     @PutMapping("/api/comments/{commentId}")
