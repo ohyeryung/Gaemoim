@@ -4,12 +4,16 @@ import com.sparta.mini2.dto.PostRequestDto;
 import com.sparta.mini2.dto.PostResponseDto;
 import com.sparta.mini2.model.Post;
 
+import com.sparta.mini2.model.User;
 import com.sparta.mini2.repository.PostRepository;
 
 
+import com.sparta.mini2.repository.UserRepository;
+import com.sparta.mini2.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -19,20 +23,22 @@ import javax.transaction.Transactional;
 @Service
 public class PostService {
     private final PostRepository PostRepository;
+    private final UserRepository UserRepository;
 
 
 
     //게시글 생성
-    public PostResponseDto createPost(PostRequestDto requestDto) {
+    public PostResponseDto createPost(PostRequestDto requestDto ,@AuthenticationPrincipal UserDetailsImpl userDetails) {
         PostResponseDto postResponseDto = null;
+        User user = UserRepository.findByNickName(userDetails.getUser().getNickName()).orElse(null);
 
-        Post post = new Post(requestDto );
-
+        Post post = new Post(requestDto , user);
         int frontNum = requestDto.getFrontNum();
         int backNum = requestDto.getFrontNum();
         if (frontNum == 0 && backNum == 0) {
             throw new IllegalArgumentException("모집인원을 정해주세요");
         }
+
         PostRepository.save(post);
         postResponseDto = new PostResponseDto(true);
 

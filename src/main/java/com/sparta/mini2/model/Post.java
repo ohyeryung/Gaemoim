@@ -43,6 +43,9 @@ public class Post extends Timestamped {
     @Column(nullable = false)
     private String username;
 
+    @ManyToOne
+    @JoinColumn
+    private User user;
 
     @Column(nullable = false)
     private int likeCnt;
@@ -63,7 +66,7 @@ public class Post extends Timestamped {
     }
 
     // 게시글 생성
-    public Post(PostRequestDto requestDto ) {
+    public Post(PostRequestDto requestDto , User user) {
         this.title = requestDto.getTitle();
         this.nickName = requestDto.getNickName();
         this.post_content = requestDto.getPost_content();
@@ -72,6 +75,7 @@ public class Post extends Timestamped {
         this.completed = requestDto.isCompleted();
         this.username = requestDto.getUsername();
         this.likeCnt = 0;
+        this.user = user;
 
 //        this.createdAt = requestDto.getCreatedAt();
 
