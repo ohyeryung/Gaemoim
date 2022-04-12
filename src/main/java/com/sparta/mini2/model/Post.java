@@ -76,19 +76,8 @@ public class Post extends Timestamped {
 //        this.createdAt = requestDto.getCreatedAt();
 
     }
-    //게시글 수정
-    public void update(Long postId, PostRequestDto requestDto) {
-        this.postId = postId;
-        this.title = requestDto.getTitle();
-        this.nickName = requestDto.getNickName();
-        this.post_content = requestDto.getPost_content();
-        this.frontNum = requestDto.getFrontNum();
-        this.backNum = requestDto.getBackNum();
-        this.completed = requestDto.isCompleted();
-        this.username = requestDto.getUsername();
-        this.likeCnt = 0;
-    }
 
+    //게시글 수정
     public void update(Long postId, String title, String post_content, int frontNum, int backNum, boolean completed) {
         this.postId = postId;
         this.title = title;
