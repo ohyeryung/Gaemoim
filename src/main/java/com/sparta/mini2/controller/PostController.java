@@ -43,9 +43,9 @@ public class PostController {
     }
     // 게시글 생성
     @PostMapping("/api/post")
-    public PostResponseDto createPost(@RequestBody PostRequestDto requestDto , @AuthenticationPrincipal UserDetailsImpl userDetails){
+    public PostResponseDto createPost(@RequestBody PostRequestDto requestDto){
 
-        return PostService.createPost(requestDto , userDetails);
+        return PostService.createPost(requestDto);
     }
     //게시글 수정
     @PutMapping("/api/post/{postId}")
