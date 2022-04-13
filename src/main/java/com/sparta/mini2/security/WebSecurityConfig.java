@@ -5,7 +5,6 @@ import com.sparta.mini2.security.filter.JwtAuthFilter;
 import com.sparta.mini2.security.jwt.HeaderTokenExtractor;
 import com.sparta.mini2.security.provider.FormLoginAuthProvider;
 import com.sparta.mini2.security.provider.JWTAuthProvider;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -25,7 +24,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @Configuration
@@ -113,6 +111,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedPage("/forbidden.html");
     }
 
+    //   CORS 설정   //
+
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
@@ -124,8 +124,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", corsConfiguration);
         return source;
-
     }
+
+    //    CORS 설정   //
 
     @Bean
     public FormLoginFilter formLoginFilter() throws Exception {
