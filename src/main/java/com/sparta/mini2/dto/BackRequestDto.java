@@ -1,7 +1,8 @@
 package com.sparta.mini2.dto;
 
 
-import com.sparta.mini2.model.Likes;
+import com.sparta.mini2.model.Back;
+import com.sparta.mini2.model.Front;
 import com.sparta.mini2.model.Post;
 import com.sparta.mini2.model.User;
 import lombok.Builder;
@@ -13,9 +14,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Builder
-public class LikeRequestDto {
-    public Likes toEntity(Post post, User user) {
-        return Likes.builder()
+public class BackRequestDto {
+    public Back toBackEntity(Post post, User user) {
+        return Back.builder()
                 .user(user)
                 .post(post)
                 .build();

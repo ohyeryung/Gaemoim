@@ -19,7 +19,7 @@ public class LikeController {
         this.likeService = likeService;
     }
 
-    @PostMapping("/api/like/{postId}")
+    @PostMapping("/like/{postId}")
     public LikeResponseDto clickLike(@PathVariable Long postId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return likeService.clickLike(postId, userDetails);
     }

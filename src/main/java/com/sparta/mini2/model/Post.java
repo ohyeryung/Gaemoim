@@ -45,7 +45,10 @@ public class Post extends Timestamped {
     private User user;
 
     @Column(nullable = false)
-    private int likeCnt;
+    private int frontCnt;
+
+    @Column(nullable = false)
+    private int backCnt;
 
 //    @Column(nullable = false)
 //    private String createdAt;
@@ -58,7 +61,8 @@ public class Post extends Timestamped {
         this.backNum = backNum;
         this.completed = completed;
         this.username = username;
-        this.likeCnt = 0;
+        this.frontCnt = 0;
+        this.backCnt = 0;
 //        this.createdAt = createdAt;
     }
 
@@ -71,7 +75,8 @@ public class Post extends Timestamped {
         this.backNum = requestDto.getBackNum();
         this.completed = requestDto.isCompleted();
         this.username = requestDto.getUsername();
-        this.likeCnt = 0;
+        this.frontCnt = 0;
+        this.backCnt = 0;
 
 //        this.createdAt = requestDto.getCreatedAt();
 

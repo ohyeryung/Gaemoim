@@ -4,7 +4,6 @@ package com.sparta.mini2.service;
 import com.sparta.mini2.dto.CommentRequestDto;
 import com.sparta.mini2.dto.CommentResponseDto;
 import com.sparta.mini2.model.Comment;
-import com.sparta.mini2.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
