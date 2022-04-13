@@ -26,7 +26,7 @@ public class CommentController {
 
     //  댓글 전체 조회
     @GetMapping("/api/comments/{postId}")
-    public Page<Comment> getComment(@PathVariable Long postId ,@PageableDefault(size = 5) Pageable pageable) {
+    public Page<Comment> getComment(@PathVariable Long postId ,@PageableDefault(size = 10) Pageable pageable) {
         return commentService.getComment(postId , pageable);
     }
     // 댓글 생성

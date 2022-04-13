@@ -11,8 +11,8 @@ import com.sparta.mini2.repository.BackRepository;
 import com.sparta.mini2.repository.FrontRepository;
 import com.sparta.mini2.repository.PostRepository;
 import com.sparta.mini2.repository.UserRepository;
-import com.sparta.mini2.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -28,14 +28,15 @@ public class FrontService {
     private final PostRepository postRepository;
 
     @Transactional
-    public FrontResponseDto clickFront(Long postId, UserDetailsImpl userDetails) {
+    public FrontResponseDto clickFront(Long postId, @AuthenticationPrincipal String userDetails) {
         FrontRequestDto frontRequestDto = new FrontRequestDto();
-        // 해당 게시글을 전부 찾기
+        // 해당 게시글 찾기
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new IllegalArgumentException("찾으시는 글이 존재하지 않습니다.")
         );
-        // 다른 포지션에서 참여를 햇는지 검사
+        // 다른 포지션에서 참여를 했는지 검사
         Back backCheck = backRepository.findByUserAndPost(userDetails.getUser(), post).orElse(null);
+
         if (backCheck != null) {
             throw new IllegalArgumentException("이미 백엔드에 참여를 하셨습니다.");
         }
@@ -44,8 +45,12 @@ public class FrontService {
         User user = userRepository.findById(userDetails.getUser().getId()).orElseThrow(
                 () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
         );
+        System.out.println("FrontService에서 username 찍어보기");
+        System.out.println(user.getUsername());
+
         // 좋아요를 안눌렀을 경우(null) -> Repository에 포스트와 유저정보를 저장
-        // 이후 해당 포스트의 리스트 갯수를 센다음 게시글 Entity에 Cnt에 넣어준다.
+        // 이후 해당 포스트의 리스트 갯수를 센 다음 게시글 Entity에 Cnt에 넣어준다.
+
         Front front = new Front();
         if (frontCheck != null) {
             // 좋아요를 눌렀었을 경우, 요청이 들어오면 Repository에서
