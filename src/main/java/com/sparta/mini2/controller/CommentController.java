@@ -52,4 +52,10 @@ public class CommentController {
     public CommentResponseDto deleteComment(@PathVariable Long commentId) {
         return commentService.deleteComment(commentId);
     }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public Object nullex(Exception e) {
+        return e.getMessage();
+    }
+
 }
