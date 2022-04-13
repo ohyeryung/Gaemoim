@@ -12,6 +12,7 @@ import com.sparta.mini2.repository.UserRepository;
 import com.sparta.mini2.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
@@ -41,12 +42,13 @@ public class PostService {
     }
 
     //게시글 전체 조회 , 페이징처리
-    public Page<Post> getPost(Pageable pageable) {
+    public Page<Post> getPost(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
         return PostRepository.findAllByOrderByModifiedAtDesc(pageable);
     }
 
     //게시글 특정 조회
-    public Post getPost(Long postId) {
+    public Post getPostone(Long postId) {
         Post post = PostRepository.findById(postId).orElseThrow(
                 () -> new IllegalArgumentException("postId가 존재하지 않습니다."));
         return post;
@@ -73,5 +75,6 @@ public class PostService {
         postResponseDto = new PostResponseDto(true);
         return postResponseDto;
     }
+
 }
 
