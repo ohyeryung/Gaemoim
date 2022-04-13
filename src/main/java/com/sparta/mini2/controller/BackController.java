@@ -18,7 +18,7 @@ public class BackController {
         this.backService = backService;
     }
 
-
+    // 백엔드 - 프로젝트 참여하기 (좋아요 기능 활용)
     @PostMapping("/api/back/{postId}")
     public BackResponseDto clickBack(@PathVariable Long postId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return backService.clickBack(postId, userDetails);

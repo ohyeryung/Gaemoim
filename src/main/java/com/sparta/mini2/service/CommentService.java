@@ -21,6 +21,7 @@ public class CommentService {
     public CommentResponseDto createComment(Long postId, CommentRequestDto requestDto) {
         CommentResponseDto commentResponseDto = null;
         Comment comment = new Comment(postId,requestDto);
+
         commentRepository.save(comment);
         commentResponseDto = new CommentResponseDto(true);
         return commentResponseDto;
