@@ -54,8 +54,8 @@ public class UserController {
         return new ResponseDto(userDetails.getUsername(), userDetails.getUserNickName(), userDetails.getUserPosition());
     }
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    public Object nullex(Exception e) {
-        return e.getMessage();
-    }
+//    @ExceptionHandler(IllegalArgumentException.class)
+//    public Object nullex(Exception e) {
+//        return e.getMessage();
+//    }
 }
