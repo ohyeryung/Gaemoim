@@ -10,5 +10,6 @@ public class CommentRequestDto {
     private Long postId;
     private String username;
     private String nickName;
+    private String position;
     private String comment_content;
 }

@@ -6,13 +6,13 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.CredentialsExpiredException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +28,9 @@ public class AuthFailureHandler implements AuthenticationFailureHandler {
 
         String errormessage = "아이디와 비밀번호를 확인해주세요.";
 
+        if (exception instanceof UsernameNotFoundException) {
+            errormessage = "존재하지 않는 아이디입니다.";
+        }
         if (exception instanceof DisabledException) {
             errormessage = "휴면계정입니다.";
         } else if (exception instanceof CredentialsExpiredException) {

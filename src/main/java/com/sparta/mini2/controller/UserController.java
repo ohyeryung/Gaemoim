@@ -8,6 +8,7 @@ import com.sparta.mini2.validator.UserInfoValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,4 +53,5 @@ public class UserController {
     public ResponseDto islogin(@AuthenticationPrincipal UserDetailsImpl userDetails) {
         return new ResponseDto(userDetails.getUsername(), userDetails.getUserNickName(), userDetails.getUserPosition());
     }
+
 }

@@ -4,17 +4,12 @@ import com.sparta.mini2.dto.PostRequestDto;
 import com.sparta.mini2.dto.PostResponseDto;
 import com.sparta.mini2.model.Post;
 
-import com.sparta.mini2.model.User;
 import com.sparta.mini2.repository.PostRepository;
 
 
-import com.sparta.mini2.repository.UserRepository;
-import com.sparta.mini2.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -43,8 +38,7 @@ public class PostService {
 
     //게시글 전체 조회 , 페이징처리
     public Page<Post> getPost(Pageable pageable) {
-
-        return PostRepository.findAllByOrderByModifiedAtDesc(pageable);
+        return PostRepository.findAllByOrderByCreatedAtDesc(pageable);
     }
 
     //게시글 특정 조회

@@ -53,9 +53,4 @@ public class CommentController {
         return commentService.deleteComment(commentId);
     }
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    public Object nullex(Exception e) {
-        return e.getMessage();
-    }
-
 }
