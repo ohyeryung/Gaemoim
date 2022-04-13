@@ -36,7 +36,7 @@ public class PostController {
     }
 
     //     게시글 특정 조회
-    @GetMapping("/api/post/{postId}")
+    @GetMapping("/api/post/detail/{postId}")
     public Post getPostone(@PathVariable Long postId) {
 
         return PostService.getPostone(postId);
