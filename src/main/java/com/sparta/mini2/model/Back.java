@@ -1,5 +1,6 @@
 package com.sparta.mini2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sparta.mini2.dto.BackResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,10 +20,12 @@ public class Back {
     @Id
     private Long id;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private User user;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Post post;
