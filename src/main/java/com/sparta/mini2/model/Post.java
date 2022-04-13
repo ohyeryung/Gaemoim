@@ -1,11 +1,14 @@
 package com.sparta.mini2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sparta.mini2.dto.PostRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 @Getter // get 함수를 일괄적으로 만들어줍니다.
@@ -49,6 +52,14 @@ public class Post extends Timestamped {
 
     @Column(nullable = false)
     private int backCnt;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"post"})
+    private List<Front> front = new ArrayList<Front>();
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"post"})
+    private List<Back> back = new ArrayList<Back>();
 
 //    @Column(nullable = false)
 //    private String createdAt;

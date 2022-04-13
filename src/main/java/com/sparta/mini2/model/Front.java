@@ -29,6 +29,7 @@ public class Front {
 
     public FrontResponseDto toFrontDto(boolean bool, boolean completed, int frontCnt) {
         return FrontResponseDto.builder()
+                .username(user.getUsername())
                 .isJoin(bool)
                 .isCompleted(completed)
                 .frontCnt(frontCnt)
