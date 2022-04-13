@@ -17,29 +17,24 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class PostController {
 
-
     private final com.sparta.mini2.service.PostService PostService;
     private final com.sparta.mini2.service.UserService UserService;
 
-
-
     // 게시글 전체 조회  ,페이징처리
     @GetMapping("/api/post")
-    public Page<Post> getPost(@PageableDefault(size = 5) Pageable pageable
-//            @RequestParam("page")  int page,
-//            @RequestParam("size") int size,
+    public Page<Post> getPost(@RequestParam("page")  int page, @RequestParam("size") int size) {
 //            @RequestParam ("sortBy")  String sortBy,
 //            @RequestParam ("isAsc")  boolean isAsc
-    ) {
-//
-        return PostService.getPost(pageable);
+        page = page-1;
+
+        return PostService.getPost(page, size);
     }
 
     //     게시글 특정 조회
     @GetMapping("/api/post/{postId}")
-    public Post getPost(@PathVariable Long postId) {
+    public Post getPostone(@PathVariable Long postId) {
 
-        return PostService.getPost(postId);
+        return PostService.getPostone(postId);
     }
     // 게시글 생성
     @PostMapping("/api/post")
@@ -55,7 +50,11 @@ public class PostController {
     //게시글 삭제
     @DeleteMapping("/api/post/{postId}")
     public PostResponseDto deletePost(@PathVariable Long postId) {
-
         return PostService.deletePost(postId);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public Object nullex(Exception e) {
+        return e.getMessage();
     }
 }

@@ -1,6 +1,6 @@
 package com.sparta.mini2.model;
 
-import com.sparta.mini2.dto.LikeResponseDto;
+import com.sparta.mini2.dto.BackResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Likes {
+public class Back {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -27,11 +27,11 @@ public class Likes {
     @JoinColumn
     private Post post;
 
-    public LikeResponseDto toDto(boolean bool, int likeCnt) {
-        return LikeResponseDto.builder()
-                .nickname(user.getNickName())
-                .islike(bool)
-                .likeCnt(likeCnt)
+    public BackResponseDto toBackDto(boolean bool, boolean completed, int backCnt) {
+        return BackResponseDto.builder()
+                .isJoin(bool)
+                .isCompleted(completed)
+                .backCnt(backCnt)
                 .build();
     }
 }
