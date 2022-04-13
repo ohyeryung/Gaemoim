@@ -29,6 +29,7 @@ public class Back {
 
     public BackResponseDto toBackDto(boolean bool, boolean completed, int backCnt) {
         return BackResponseDto.builder()
+                .username(user.getUsername())
                 .isJoin(bool)
                 .isCompleted(completed)
                 .backCnt(backCnt)

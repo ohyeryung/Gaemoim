@@ -8,6 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class FrontResponseDto {
+    private String username;
     private boolean isJoin;
     private boolean isCompleted;
     private int frontCnt;

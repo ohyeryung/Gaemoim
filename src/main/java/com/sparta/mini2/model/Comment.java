@@ -24,25 +24,26 @@ public class Comment extends Timestamped {
     private String nickName;
 
     @Column(nullable = false)
-    private String position;
-
-    @Column(nullable = false)
     private String comment_content;
 
     @Column(nullable = false)
     private Long postId;
 
 
-    // 댓글 생성
-    public Comment(Long postId, CommentRequestDto requestDto) {
-        this.postId = postId;
-        this.username = requestDto.getUsername();
+    // 게시글 생성
+    public Comment(CommentRequestDto requestDto) {
         this.nickName = requestDto.getNickName();
-        this.position = requestDto.getPosition();
+        this.username = requestDto.getUsername();
+        this.postId = requestDto.getPostId();
         this.comment_content = requestDto.getComment_content();
     }
 
-    // 댓글 수정
+    public Comment(Long postId, CommentRequestDto requestDto) {
+        this.postId = postId;
+
+
+    }
+
     public void update(String comment_content) {
         this.comment_content = comment_content;
     }

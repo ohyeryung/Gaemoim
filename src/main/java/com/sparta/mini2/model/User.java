@@ -1,10 +1,13 @@
 package com.sparta.mini2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
@@ -26,6 +29,14 @@ public class User {
 
     @Column(nullable = false)
     private String position;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"user"})
+    private List<Front> front = new ArrayList<Front>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"user"})
+    private List<Back> back = new ArrayList<Back>();
 
     public User(String username, String nickName, String password, String position) {
         this.username = username;
