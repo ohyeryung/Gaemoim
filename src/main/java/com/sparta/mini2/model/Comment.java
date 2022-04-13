@@ -16,10 +16,7 @@ public class Comment extends Timestamped {
     @Id
     private Long commentId;
 
-    @Column(nullable = false)
-    private Long postId;
-
-    // nullable = false, 반드시 값을 가지도록 합니다.
+    // nullable = false 반드시 값을 가지도록 합니다.
     @Column(nullable = false)
     private String username;
 
@@ -29,17 +26,21 @@ public class Comment extends Timestamped {
     @Column(nullable = false)
     private String comment_content;
 
+    @Column(nullable = false)
+    private Long postId;
 
-  // 댓글생성
-    public Comment(Long postId, CommentRequestDto requestDto) {
+
+    // 게시글 생성
+    public Comment(CommentRequestDto requestDto) {
         this.nickName = requestDto.getNickName();
         this.username = requestDto.getUsername();
-        this.postId = postId;
+        this.postId = requestDto.getPostId();
         this.comment_content = requestDto.getComment_content();
-
     }
-
-    public void update(String comment_content) {
-        this.comment_content = comment_content;
+    // 게시글 수정
+    public void update(CommentRequestDto requestDto) {
+//        this.username = requestDto.getUsername();
+        this.comment_content = requestDto.getComment_content();
+//        this.contentsId = requestDto.getContentsId();
     }
 }
