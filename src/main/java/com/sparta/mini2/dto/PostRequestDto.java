@@ -6,13 +6,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PostRequestDto {
-    private String title;
+    private Long postId;
+    private String username;
     private String nickName;
-    private String post_content;
+    private String title;
     private int frontNum;
     private int backNum;
+    private String post_content;
     private boolean completed;
-    private String username;
-//    private String createdAt;
-
 }

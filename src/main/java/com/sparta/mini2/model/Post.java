@@ -1,14 +1,11 @@
 package com.sparta.mini2.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sparta.mini2.dto.PostRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Setter
 @Getter // get 함수를 일괄적으로 만들어줍니다.
@@ -66,7 +63,7 @@ public class Post extends Timestamped {
     }
 
     // 게시글 생성
-    public Post(PostRequestDto requestDto , User user) {
+    public Post(PostRequestDto requestDto) {
         this.title = requestDto.getTitle();
         this.nickName = requestDto.getNickName();
         this.post_content = requestDto.getPost_content();
@@ -75,20 +72,18 @@ public class Post extends Timestamped {
         this.completed = requestDto.isCompleted();
         this.username = requestDto.getUsername();
         this.likeCnt = 0;
-        this.user = user;
 
 //        this.createdAt = requestDto.getCreatedAt();
 
     }
+
     //게시글 수정
-    public void update(PostRequestDto requestDto) {
-        this.title = requestDto.getTitle();
-        this.nickName = requestDto.getNickName();
-        this.post_content = requestDto.getPost_content();
-        this.frontNum = requestDto.getFrontNum();
-        this.backNum = requestDto.getBackNum();
-        this.completed = requestDto.isCompleted();
-        this.username = requestDto.getUsername();
-        this.likeCnt = 0;
+    public void update(Long postId, String title, String post_content, int frontNum, int backNum, boolean completed) {
+        this.postId = postId;
+        this.title = title;
+        this.post_content = post_content;
+        this.frontNum = frontNum;
+        this.backNum = backNum;
+        this.completed = completed;
     }
 }
