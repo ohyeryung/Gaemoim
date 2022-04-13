@@ -37,20 +37,10 @@ public class Comment extends Timestamped {
         this.postId = requestDto.getPostId();
         this.comment_content = requestDto.getComment_content();
     }
-
     // 게시글 수정
-    public Comment(Long postId, String comment_content) {
-        this.postId = postId;
-        this.comment_content = comment_content;
-    }
-
-    // 댓글 생성
-    public Comment(Long postId, CommentRequestDto requestDto) {
-        this.postId = postId;
-    }
-
-    // 댓글 수정
-    public void update(String comment_content) {
-        this.comment_content = comment_content;
+    public void update(CommentRequestDto requestDto) {
+//        this.username = requestDto.getUsername();
+        this.comment_content = requestDto.getComment_content();
+//        this.contentsId = requestDto.getContentsId();
     }
 }
