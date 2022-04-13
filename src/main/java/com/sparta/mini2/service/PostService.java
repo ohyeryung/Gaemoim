@@ -44,7 +44,7 @@ public class PostService {
     //게시글 전체 조회 , 페이징처리
     public Page<Post> getPost(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
-        return PostRepository.findAllByOrderByModifiedAtDesc(pageable);
+        return PostRepository.findAllByOrderByCreatedAtDesc(pageable);
     }
 
     //게시글 특정 조회
