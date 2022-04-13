@@ -3,9 +3,11 @@ package com.sparta.mini2.service;
 
 import com.sparta.mini2.dto.FrontRequestDto;
 import com.sparta.mini2.dto.FrontResponseDto;
+import com.sparta.mini2.model.Back;
 import com.sparta.mini2.model.Front;
 import com.sparta.mini2.model.Post;
 import com.sparta.mini2.model.User;
+import com.sparta.mini2.repository.BackRepository;
 import com.sparta.mini2.repository.FrontRepository;
 import com.sparta.mini2.repository.PostRepository;
 import com.sparta.mini2.repository.UserRepository;
@@ -21,6 +23,7 @@ import java.util.List;
 public class FrontService {
 
     private final FrontRepository frontRepository;
+    private final BackRepository backRepository;
     private final UserRepository userRepository;
     private final PostRepository postRepository;
 
@@ -31,6 +34,11 @@ public class FrontService {
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new IllegalArgumentException("찾으시는 글이 존재하지 않습니다.")
         );
+        // 다른 포지션에서 참여를 햇는지 검사
+        Back backCheck = backRepository.findByUserAndPost(userDetails.getUser(), post).orElse(null);
+        if (backCheck != null){
+            throw new IllegalArgumentException("이미 백엔드에 참여를 하셨습니다.");
+        }
         // 눌렀는지 확인하기
         Front frontCheck = frontRepository.findByUserAndPost(userDetails.getUser(), post).orElse(null);
         User user = userRepository.findById(userDetails.getUser().getId()).orElseThrow(
@@ -40,6 +48,10 @@ public class FrontService {
         // 이후 해당 포스트의 리스트 갯수를 센다음 게시글 Entity에 Cnt에 넣어준다.
         Front front = new Front();
         if (frontCheck == null) {
+//             모집이 완료되면 종료
+            if (post.getFrontNum() == post.getFrontCnt()){
+                throw new IllegalArgumentException("정원 초과입니다.");
+            }
             front = frontRepository.save(frontRequestDto.toFrontEntity(post, user));
             List<Front> frontList = frontRepository.findAllByPost(post);
 
