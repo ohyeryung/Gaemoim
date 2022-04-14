@@ -27,8 +27,7 @@ public class AuthFailureHandler implements AuthenticationFailureHandler {
 
         if (exception instanceof UsernameNotFoundException) {
             errormessage = "존재하지 않는 아이디입니다.";
-        }
-        if (exception instanceof DisabledException) {
+        } else if (exception instanceof DisabledException) {
             errormessage = "휴면계정입니다.";
         } else if (exception instanceof CredentialsExpiredException) {
             errormessage = "비밀번호가 만료되었습니다.";
