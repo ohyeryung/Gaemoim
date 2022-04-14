@@ -47,8 +47,6 @@ public class FrontService {
         User user = userRepository.findById(userDetails.getUser().getId()).orElseThrow(
                 () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
         );
-        System.out.println("FrontService에서 username 찍어보기");
-        System.out.println(user.getUsername());
 
         // 좋아요를 안눌렀을 경우(null) -> Repository에 포스트와 유저정보를 저장
         // 이후 해당 포스트의 리스트 갯수를 센 다음 게시글 Entity에 Cnt에 넣어준다.

@@ -31,7 +31,7 @@ public class PostController {
         return PostService.getPost(pageable);
     }
 
-    //     게시글 특정 조회
+    // 게시글 특정 조회
     @GetMapping("/api/post/detail/{postId}")
     public Post getPostone(@PathVariable Long postId) {
 
@@ -43,12 +43,12 @@ public class PostController {
 
         return PostService.createPost(requestDto);
     }
-    //게시글 수정
+    // 게시글 수정
     @PutMapping("/api/post/{postId}")
     public PostResponseDto updatePost(@PathVariable Long postId, @RequestBody PostRequestDto requestDto) {
         return PostService.update(postId, requestDto);
     }
-    //게시글 삭제
+    // 게시글 삭제
     @DeleteMapping("/api/post/{postId}")
     public PostResponseDto deletePost(@PathVariable Long postId) {
 
