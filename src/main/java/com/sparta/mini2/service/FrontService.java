@@ -15,6 +15,7 @@ import com.sparta.mini2.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
+import java.io.IOException;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -24,23 +25,23 @@ import java.util.List;
 public class FrontService {
 
     private final FrontRepository frontRepository;
-    private final BackRepository backRepository;
+//    private final BackRepository backRepository;
     private final UserRepository userRepository;
     private final PostRepository postRepository;
 
     @Transactional
-    public FrontResponseDto clickFront(Long postId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public FrontResponseDto clickFront(Long postId, @AuthenticationPrincipal UserDetailsImpl userDetails)  {
         FrontRequestDto frontRequestDto = new FrontRequestDto();
         // 해당 게시글 찾기
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new IllegalArgumentException("찾으시는 글이 존재하지 않습니다.")
         );
         // 다른 포지션에서 참여를 했는지 검사
-        Back backCheck = backRepository.findByUserAndPost(userDetails.getUser(), post).orElse(null);
-
-        if (backCheck != null) {
-            throw new IllegalArgumentException("이미 백엔드에 참여를 하셨습니다.");
-        }
+//        Back backCheck = backRepository.findByUserAndPost(userDetails.getUser(), post).orElse(null);
+//
+//        if (backCheck != null) {
+//            throw new IllegalArgumentException("이미 백엔드에 참여를 하셨습니다.");
+//        }
         // 눌렀는지 확인하기
         Front frontCheck = frontRepository.findByUserAndPost(userDetails.getUser(), post).orElse(null);
         User user = userRepository.findById(userDetails.getUser().getId()).orElseThrow(
