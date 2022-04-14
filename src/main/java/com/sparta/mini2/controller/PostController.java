@@ -21,13 +21,7 @@ public class PostController {
 
     // 게시글 전체 조회  ,페이징처리
     @GetMapping("/api/post")
-    public Page<Post> getPost(@PageableDefault(size = 10) Pageable pageable
-//            @RequestParam("page")  int page,
-//            @RequestParam("size") int size,
-//            @RequestParam ("sortBy")  String sortBy,
-//            @RequestParam ("isAsc")  boolean isAsc
-    ) {
-//
+    public Page<Post> getPost(@PageableDefault(size = 10) Pageable pageable) {
         return PostService.getPost(pageable);
     }
 
@@ -51,7 +45,6 @@ public class PostController {
     // 게시글 삭제
     @DeleteMapping("/api/post/{postId}")
     public PostResponseDto deletePost(@PathVariable Long postId) {
-
         return PostService.deletePost(postId);
     }
     @ExceptionHandler(IllegalArgumentException.class)

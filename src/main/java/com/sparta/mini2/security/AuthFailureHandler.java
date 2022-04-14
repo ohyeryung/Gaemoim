@@ -23,9 +23,6 @@ public class AuthFailureHandler implements AuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
 
-//        String username = request.getParameter("username"); // request에서 getParameter를 사용하여 "username"에 대한 정보를 가져올 수 있다.
-//        response.sendRedirect("api/login?Error");
-
         String errormessage = "아이디와 비밀번호를 확인해주세요.";
 
         if (exception instanceof UsernameNotFoundException) {
@@ -47,8 +44,6 @@ public class AuthFailureHandler implements AuthenticationFailureHandler {
         data.put(
                 "exception",
                 errormessage);
-//        response.setCharacterEncoding("UTF-8");
-//        System.out.println(exception.toString());
 
         String aa = new String (objectMapper.writeValueAsString(data).getBytes("UTF-8"), "ISO-8859-1");
         response.getOutputStream()

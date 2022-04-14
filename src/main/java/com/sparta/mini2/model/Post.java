@@ -64,22 +64,6 @@ public class Post extends Timestamped {
     @JsonIgnoreProperties({"post"})
     private List<Back> back = new ArrayList<Back>();
 
-//    @Column(nullable = false)
-//    private String createdAt;
-//
-//    public Post(String title, String nickName, String post_content, int frontNum, int backNum, boolean completed, String username) {
-//        this.title = title;
-//        this.username = username;
-//        this.nickName = nickName;
-//        this.position = position;
-//        this.post_content = post_content;
-//        this.frontNum = frontNum;
-//        this.backNum = backNum;
-//        this.completed = completed;
-//        this.frontCnt = 0;
-//        this.backCnt = 0;
-////        this.createdAt = createdAt;
-//    }
 
     // 게시글 생성
     public Post(PostRequestDto requestDto) {
@@ -93,8 +77,6 @@ public class Post extends Timestamped {
         this.completed = requestDto.isCompleted();
         this.frontCnt = 0;
         this.backCnt = 0;
-
-//        this.createdAt = requestDto.getCreatedAt();
 
     }
 

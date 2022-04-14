@@ -32,12 +32,6 @@ public class UserController {
         }
     }
 
-    // 로그인
-//    @PostMapping("/api/login")
-//    public ResponseDto login(@RequestBody SignupRequestDto requestDto) {
-//        return userService.login(requestDto);
-//    }
-
     // 아이디 중복 검사
     @PostMapping("/api/idCheck")
     public ResponseDto idDueCheck(@RequestBody SignupRequestDto requestDto) {

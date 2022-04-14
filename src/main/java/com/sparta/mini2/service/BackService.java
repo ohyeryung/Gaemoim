@@ -17,6 +17,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.awt.event.FocusAdapter;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -31,15 +32,20 @@ public class BackService {
     @Transactional
     public BackResponseDto clickBack(Long postId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         BackRequestDto backRequestDto = new BackRequestDto();
-        System.out.println(backRequestDto);
+
         // 해당 게시글 찾기
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new IllegalArgumentException("찾으시는 글이 존재하지 않습니다.")
         );
 
+        // 다른 포지션에서 참여를 햇는지 검사
+        Front frontCheck = frontRepository.findByUserAndPost(userDetails.getUser(), post).orElse(null);
+        if (frontCheck != null) {
+            throw new IllegalArgumentException("이미 프론트엔드에 참여를 하셨습니다.");
+        }
+
         // 눌렀는지 확인하기
         Back backCheck = backRepository.findByUserAndPost(userDetails.getUser(), post).orElse(null);
-        System.out.println("BackService에서 찍어보는" + userDetails.getUser().getUsername());
 
         User user = userRepository.findById(userDetails.getUser().getId()).orElseThrow(
                 () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
