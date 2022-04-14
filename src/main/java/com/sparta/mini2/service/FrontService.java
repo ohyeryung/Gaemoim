@@ -11,6 +11,7 @@ import com.sparta.mini2.repository.BackRepository;
 import com.sparta.mini2.repository.FrontRepository;
 import com.sparta.mini2.repository.PostRepository;
 import com.sparta.mini2.repository.UserRepository;
+import com.sparta.mini2.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class FrontService {
     private final PostRepository postRepository;
 
     @Transactional
-    public FrontResponseDto clickFront(Long postId, @AuthenticationPrincipal String userDetails) {
+    public FrontResponseDto clickFront(Long postId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         FrontRequestDto frontRequestDto = new FrontRequestDto();
         // 해당 게시글 찾기
         Post post = postRepository.findById(postId).orElseThrow(

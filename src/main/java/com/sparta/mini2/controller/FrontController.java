@@ -24,6 +24,6 @@ public class FrontController {
     public FrontResponseDto clickFront(@PathVariable Long postId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         System.out.println("FrontController에서 username 찍어보기");
         System.out.println(userDetails.getUser().getUsername());
-        return frontService.clickFront(postId, userDetails.getUsername());
+        return frontService.clickFront(postId, userDetails);
     }
 }
