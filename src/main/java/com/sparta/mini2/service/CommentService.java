@@ -40,7 +40,7 @@ public class CommentService {
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
         );
         comment.update(requestDto.getComment_content());
-        System.out.println(comment.getComment_content());
+
         commentResponseDto = new CommentResponseDto(true);
         return commentResponseDto;
     }

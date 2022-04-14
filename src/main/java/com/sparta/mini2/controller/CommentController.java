@@ -26,7 +26,7 @@ public class CommentController {
 
     //  댓글 전체 조회
     @GetMapping("/api/comments/{postId}")
-    public Page<Comment> getComment(@PathVariable Long postId ,@PageableDefault(size = 5) Pageable pageable) {
+    public Page<Comment> getComment(@PathVariable Long postId ,@PageableDefault(size = 10) Pageable pageable) {
         return commentService.getComment(postId , pageable);
     }
     // 댓글 생성
@@ -51,6 +51,11 @@ public class CommentController {
     @DeleteMapping("/api/comments/{commentId}")
     public CommentResponseDto deleteComment(@PathVariable Long commentId) {
         return commentService.deleteComment(commentId);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public String nullex(IllegalArgumentException e) {
+        return e.getMessage();
     }
 
 }

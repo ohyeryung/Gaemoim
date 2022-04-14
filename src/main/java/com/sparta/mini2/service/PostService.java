@@ -44,7 +44,7 @@ public class PostService {
     //게시글 전체 조회 , 페이징처리
     public Page<Post> getPost(Pageable pageable) {
 
-        return PostRepository.findAllByOrderByModifiedAtDesc(pageable);
+        return PostRepository.findAllByOrderByCreatedAtDesc(pageable);
     }
 
     //게시글 특정 조회
@@ -61,7 +61,6 @@ public class PostService {
         Post post = PostRepository.findById(postId).orElseThrow(
                 () -> new IllegalArgumentException("게시물이 존재하지 않습니다.")
         );
-        System.out.println(post);
         post.update(postId, requestDto.getTitle(), requestDto.getPost_content(), requestDto.getFrontNum(), requestDto.getBackNum(), requestDto.isCompleted());
 //        post.getPostId();
         postResponseDto = new PostResponseDto(true);

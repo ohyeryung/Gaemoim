@@ -29,6 +29,9 @@ public class Post extends Timestamped {
     private String nickName;
 
     @Column(nullable = false)
+    private String position;
+
+    @Column(nullable = false)
     private String post_content;
 
     @Column(nullable = false)
@@ -63,29 +66,31 @@ public class Post extends Timestamped {
 
 //    @Column(nullable = false)
 //    private String createdAt;
-
-    public Post(String title, String nickName, String post_content, int frontNum, int backNum, boolean completed, String username) {
-        this.title = title;
-        this.nickName = nickName;
-        this.post_content = post_content;
-        this.frontNum = frontNum;
-        this.backNum = backNum;
-        this.completed = completed;
-        this.username = username;
-        this.frontCnt = 0;
-        this.backCnt = 0;
-//        this.createdAt = createdAt;
-    }
+//
+//    public Post(String title, String nickName, String post_content, int frontNum, int backNum, boolean completed, String username) {
+//        this.title = title;
+//        this.username = username;
+//        this.nickName = nickName;
+//        this.position = position;
+//        this.post_content = post_content;
+//        this.frontNum = frontNum;
+//        this.backNum = backNum;
+//        this.completed = completed;
+//        this.frontCnt = 0;
+//        this.backCnt = 0;
+////        this.createdAt = createdAt;
+//    }
 
     // 게시글 생성
     public Post(PostRequestDto requestDto) {
         this.title = requestDto.getTitle();
+        this.username = requestDto.getUsername();
         this.nickName = requestDto.getNickName();
+        this.position = requestDto.getPosition();
         this.post_content = requestDto.getPost_content();
         this.frontNum = requestDto.getFrontNum();
         this.backNum = requestDto.getBackNum();
         this.completed = requestDto.isCompleted();
-        this.username = requestDto.getUsername();
         this.frontCnt = 0;
         this.backCnt = 0;
 

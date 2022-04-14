@@ -41,12 +41,14 @@ public class AuthFailureHandler implements AuthenticationFailureHandler {
 
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
         Map<String, String> data = new HashMap<>();
-        System.out.println(errormessage);
+
+        System.out.println("AuthFailureHandler에서 보내주는" + errormessage);
+
         data.put(
                 "exception",
                 errormessage);
 //        response.setCharacterEncoding("UTF-8");
-        System.out.println(exception.toString());
+//        System.out.println(exception.toString());
 
         String aa = new String (objectMapper.writeValueAsString(data).getBytes("UTF-8"), "ISO-8859-1");
         response.getOutputStream()
