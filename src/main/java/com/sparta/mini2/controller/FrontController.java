@@ -6,6 +6,7 @@ import com.sparta.mini2.security.UserDetailsImpl;
 import com.sparta.mini2.service.FrontService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,10 @@ public class FrontController {
     public FrontResponseDto clickFront(@PathVariable Long postId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         System.out.println("FrontController에서 username 찍어보기");
         System.out.println(userDetails.getUser().getUsername());
-        return frontService.clickFront(postId, userDetails.getUsername());
+        return frontService.clickFront(postId, userDetails);
+    }
+    @ExceptionHandler(IllegalArgumentException.class)
+    public String nullex(IllegalArgumentException e) {
+        return e.getMessage();
     }
 }

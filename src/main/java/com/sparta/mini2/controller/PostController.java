@@ -54,4 +54,8 @@ public class PostController {
 
         return PostService.deletePost(postId);
     }
+    @ExceptionHandler(IllegalArgumentException.class)
+    public String nullex(IllegalArgumentException e) {
+        return e.getMessage();
+    }
 }
