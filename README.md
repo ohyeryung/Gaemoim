@@ -14,7 +14,7 @@
 
 ## ⚙ 주요 기능
 
-#### API설계 [노션](https://cyber-biology-9fd.notion.site/c303f02b79fc4506a025145a7adc4701)
+#### API설계 [노션](https://www.notion.so/2-S-A-ffa94e7f8a57495bbc1fbe4c89de0ba0)
 
 #### WIREFRAME [PIGMA](https://www.figma.com/file/B6WEXes2RDdsOecbfTQKqP/%EB%AF%B8%EB%8B%88%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8?node-id=0%3A1)
 
